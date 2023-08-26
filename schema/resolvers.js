@@ -1,13 +1,37 @@
 const { UserList } = require("../dummyData");
+const { MovieList } = require("../dummyData");
+const _ = require('lodash')
 
-
-
-const resolvers ={
+const resolvers = {
     Query: {
-        users(){
-             return UserList ;
+        // GET INFO ABT ALL USERS
+        users: () => {
+            return UserList;
+        },
+        // GET INFO ABT USER WITH A ID
+        user: (parent, args) => {
+            const id = args.id
+            const user = _.find(UserList, { id: Number(id) })
+            return user;
+        },
+        // GET INFO ABT ALL MOVIES
+        movies: () => {
+            return MovieList;
+        },
+        // GET MOVIE INFO WITH A NAME
+        movie: (parent, args) => {
+            const name = args.name;
+            const movie = _.find(MovieList, { name: name })
+            return movie;
+        },
+    },
+    User: {
+        favouriteMovies: () => {
+            return _.filter(MovieList, (movie) => 
+                movie.YearOfPublication >= 2023
+            )
         }
     }
 }
 
-module.exports = resolvers ;
+module.exports = resolvers;
