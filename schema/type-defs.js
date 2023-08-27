@@ -8,7 +8,7 @@ const typeDefs = gql`
         age: Int!
         nationality: Nationality!
         friends: [User!]
-        favouriteMovies: [Movie]
+        favouriteMovies: [Movie!]
     }
 
     type Movie{
@@ -21,7 +21,7 @@ const typeDefs = gql`
     type Query{
         users: [User!]!
         user( id: ID! ) : User!
-        movies: [Movie!]
+        movies: [Movie!]!
         movie( name: String! ): Movie!
     }
 

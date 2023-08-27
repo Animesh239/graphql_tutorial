@@ -83,7 +83,7 @@ const UserList = [
             username: "surjyaMech",
             age: 20,
             nationality: "China"
-        },]
+        }]
     },
     {
         id: 4,
@@ -134,5 +134,4 @@ const MovieList = [
     },
 ]
 
-module.exports = { UserList };
-module.exports = { MovieList };
+module.exports = { UserList,MovieList };
