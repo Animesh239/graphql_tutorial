@@ -52,15 +52,18 @@ const resolvers = {
       return updatedUser;
     },
     deleteUser: (parent, args) => {
-        let newUserList;
-        const id = args.id;
-      
-        if (!UserList.some((user) => user.id === id)) {
-          return null;
+        let newUserList
+        console.log(args)
+        const id = parseInt(args.id);
+        const user = UserList.find((user) => user.id === id);
+        if (!user) {
+            //  console.log(UserList)
+            return null;
+        }else{
+             newUserList = UserList.filter((user) => user.id !== id);
+            console.log(newUserList)
+            return newUserList
         }
-      
-        newUserList = UserList.filter((user) => user.id !== id);
-        return newUserList;
       }
   },
 };
