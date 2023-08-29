@@ -104,7 +104,7 @@ const UserList = [
 const MovieList = [
     {
         id: 1, 
-        name: "Aveners",
+        name: "Avengers",
         YearOfPublication : 2021,
         InTheaters: true
     },
