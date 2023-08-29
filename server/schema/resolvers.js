@@ -60,7 +60,7 @@ const resolvers = {
             //  console.log(UserList)
             return null;
         }else{
-             newUserList = UserList.filter((user) => user.id !== id);
+            newUserList = UserList.filter((user) => user.id !== id);
             console.log(newUserList)
             return newUserList
         }
