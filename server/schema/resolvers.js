@@ -6,7 +6,8 @@ const resolvers = {
   Query: {
     // GET INFO ABT ALL USERS
     users: () => {
-      return UserList;
+      if (UserList) return { users: UserList };
+      return { message: "There was an error in fetching all users" };
     },
     // GET INFO ABT USER WITH A ID
     user: (parent, args) => {
@@ -52,19 +53,30 @@ const resolvers = {
       return updatedUser;
     },
     deleteUser: (parent, args) => {
-        let newUserList
-        console.log(args)
-        const id = parseInt(args.id);
-        const user = UserList.find((user) => user.id === id);
-        if (!user) {
-            //  console.log(UserList)
-            return null;
-        }else{
-            newUserList = UserList.filter((user) => user.id !== id);
-            console.log(newUserList)
-            return newUserList
-        }
+      let newUserList;
+      console.log(args);
+      const id = parseInt(args.id);
+      const user = UserList.find((user) => user.id === id);
+      if (!user) {
+        //  console.log(UserList)
+        return null;
+      } else {
+        newUserList = UserList.filter((user) => user.id !== id);
+        console.log(newUserList);
+        return newUserList;
       }
+    },
+  },
+  UsersResult: {
+    __resolveType(obj) {
+      if (obj.users) {
+        return "usersSuccessResult";
+      }
+      if (obj.message) {
+        return "userErrorResult";
+      }
+      return null  ;
+    },
   },
 };
 
